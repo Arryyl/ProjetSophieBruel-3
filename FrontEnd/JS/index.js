@@ -1,7 +1,7 @@
 const categories = "http://localhost:5678/api/categories";
 const works = "http://localhost:5678/api/works";
 
-//declaration categories
+// Récupération des catégories
 async function getCategories() {
   try {
     const result = await fetch(categories);
@@ -17,7 +17,7 @@ async function getCategories() {
 }
 getCategories();
 
-//Declaration works
+// Récupération des oeuvres
 async function getWorks() {
   try {
     const result = await fetch(works);
@@ -33,23 +33,22 @@ async function getWorks() {
   }
 }
 
-//Creation de balises
+// Création des balises HTML pour chaque oeuvre
 async function createGallery() {
   const works = await getWorks();
-  const figure = works[0];
 
+  //boucle
   for (let i = 0; i < works.length; i++) {
     const imageElement = document.createElement("img");
-    imageElement.src = figure.image;
+    imageElement.src = works[i].imageUrl;
 
-    const descriptionElement = document.createElement("figcaption");
-    descriptionElement.innerText = figure.description;
+    const titleElement = document.createElement("figcaption");
+    titleElement.innerText = works[i].title;
 
-    //rattachement
+    // Rattachement des balises à la galerie
     const divGallery = document.querySelector(".gallery");
-
     divGallery.appendChild(imageElement);
-    divGallery.appendChild(descriptionElement);
+    divGallery.appendChild(titleElement);
   }
 }
 
