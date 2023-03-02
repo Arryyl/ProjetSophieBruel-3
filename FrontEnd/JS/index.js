@@ -39,6 +39,8 @@ async function createGallery() {
 
   //boucle
   for (let i = 0; i < works.length; i++) {
+    ///const worksElement = document.createElement("div");
+
     const imageElement = document.createElement("img");
     imageElement.src = works[i].imageUrl;
 
@@ -47,9 +49,12 @@ async function createGallery() {
 
     // Rattachement des balises à la galerie
     const divGallery = document.querySelector(".gallery");
+    ////divGallery.appendChild(worksElement);
     divGallery.appendChild(imageElement);
     divGallery.appendChild(titleElement);
   }
 }
 
 createGallery();
+
+//Boutons filtres
