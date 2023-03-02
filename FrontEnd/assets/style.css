@@ -204,6 +204,30 @@ li:hover {
   text-align: center;
   margin-bottom: 1em;
 }
+.filtres {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  box-sizing: border-box;
+}
+.filtre {
+  width: auto;
+  height: 40px;
+  border: 1px solid #1d6154;
+  border-radius: 60px;
+  background-color: white;
+  font-family: "Syne";
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+  color: #1d6154;
+  padding-right: 1em;
+  padding-left: 1em;
+}
+.filtre:hover {
+  background-color: #1d6154;
+  color: white;
+}
 .gallery {
   width: 100%;
   display: grid;
