@@ -39,7 +39,8 @@ async function createGallery() {
 
   //boucle
   for (let i = 0; i < works.length; i++) {
-    ///const worksElement = document.createElement("div");
+    // Création de l'élément figure pour chaque oeuvre
+    const figureElement = document.createElement("figure");
 
     const imageElement = document.createElement("img");
     imageElement.src = works[i].imageUrl;
@@ -47,11 +48,13 @@ async function createGallery() {
     const titleElement = document.createElement("figcaption");
     titleElement.innerText = works[i].title;
 
-    // Rattachement des balises à la galerie
+    // Ajout de l'image et de la légende à l'élément figure
+    figureElement.appendChild(imageElement);
+    figureElement.appendChild(titleElement);
+
+    // Rattachement de l'élément figure à la galerie
     const divGallery = document.querySelector(".gallery");
-    ////divGallery.appendChild(worksElement);
-    divGallery.appendChild(imageElement);
-    divGallery.appendChild(titleElement);
+    divGallery.appendChild(figureElement);
   }
 }
 
