@@ -75,7 +75,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function filterGallery(category) {
-    console.log("Filtering gallery with category:", category);
     const allFigures = document.querySelectorAll(".gallery figure");
 
     for (let i = 0; i < allFigures.length; i++) {
@@ -94,29 +93,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (allBtn) {
     allBtn.addEventListener("click", function () {
-      console.log("Filtering gallery with category: all");
       filterGallery("all");
     });
   }
 
   if (objetsBtn) {
     objetsBtn.addEventListener("click", function () {
-      console.log("Filtering gallery with category: objets");
-      filterGallery("objets");
+      filterGallery("1");
     });
   }
 
   if (appartementsBtn) {
     appartementsBtn.addEventListener("click", function () {
-      console.log("Filtering gallery with category: appartements");
-      filterGallery("appartements");
+      filterGallery("2");
     });
   }
 
   if (hotelsrestaurantsBtn) {
     hotelsrestaurantsBtn.addEventListener("click", function () {
-      console.log("Filtering gallery with category: hotels-restaurants");
-      filterGallery("hotels-restaurants");
+      filterGallery("3");
     });
   }
 
