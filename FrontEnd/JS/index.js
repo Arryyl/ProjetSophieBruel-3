@@ -61,3 +61,64 @@ async function createGallery() {
 createGallery();
 
 //Boutons filtres
+
+document.addEventListener("DOMContentLoaded", function () {
+  const galleryContainer = document.querySelector("#portfolio .gallery");
+  const allBtn = document.querySelector(".btn-tous");
+  const objetsBtn = document.querySelector(".btn-objets");
+  const appartementsBtn = document.querySelector(".btn-appartements");
+  const hotelsrestaurantsBtn = document.querySelector(".btn-hotelsrestaurants");
+
+  function loadGallery() {
+    galleryContainer.innerHTML = "";
+    createGallery();
+  }
+
+  function filterGallery(category) {
+    console.log("Filtering gallery with category:", category);
+    const allFigures = document.querySelectorAll(".gallery figure");
+
+    for (let i = 0; i < allFigures.length; i++) {
+      const figure = allFigures[i];
+      const categoryId = figure.getAttribute("data-category-id");
+
+      if (category === "all") {
+        figure.style.display = "block";
+      } else if (categoryId === category) {
+        figure.style.display = "block";
+      } else {
+        figure.style.display = "none";
+      }
+    }
+  }
+
+  if (allBtn) {
+    allBtn.addEventListener("click", function () {
+      console.log("Filtering gallery with category: all");
+      filterGallery("all");
+    });
+  }
+
+  if (objetsBtn) {
+    objetsBtn.addEventListener("click", function () {
+      console.log("Filtering gallery with category: objets");
+      filterGallery("objets");
+    });
+  }
+
+  if (appartementsBtn) {
+    appartementsBtn.addEventListener("click", function () {
+      console.log("Filtering gallery with category: appartements");
+      filterGallery("appartements");
+    });
+  }
+
+  if (hotelsrestaurantsBtn) {
+    hotelsrestaurantsBtn.addEventListener("click", function () {
+      console.log("Filtering gallery with category: hotels-restaurants");
+      filterGallery("hotels-restaurants");
+    });
+  }
+
+  loadGallery();
+});
