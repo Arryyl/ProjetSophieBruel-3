@@ -21,7 +21,7 @@ const setForm = async (form) => {
     if (requete.ok) {
       error.style.display = "none";
       getToken(requete);
-      location.href = "../../../index.html";
+      location.href = "./index.html";
     } else {
       error.classList.add("error");
       error.textContent = "Erreur dans l’identifiant ou le mot de passe";
