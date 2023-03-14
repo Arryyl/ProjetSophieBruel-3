@@ -1,13 +1,13 @@
-const categories = "http://localhost:5678/api/categories";
-const works = "http://localhost:5678/api/works";
+const categoriesEndpoint = "http://localhost:5678/api/categories";
+const worksEndpoint = "http://localhost:5678/api/works";
 
 // Récupération des catégories
 async function getCategories() {
   try {
-    const result = await fetch(categories);
+    const result = await fetch(categoriesEndpoint);
     if (result.ok) {
       const data = await result.json();
-      console.log(data);
+      return data;
     } else {
       console.log("Error !");
     }
@@ -15,15 +15,13 @@ async function getCategories() {
     console.log(error);
   }
 }
-getCategories();
 
 // Récupération des oeuvres
 async function getWorks() {
   try {
-    const result = await fetch(works);
+    const result = await fetch(worksEndpoint);
     if (result.ok) {
       const data = await result.json();
-      console.log(data);
       return data;
     } else {
       console.log("Error !");
@@ -41,6 +39,7 @@ async function createGallery() {
   for (let i = 0; i < works.length; i++) {
     // Création de l'élément figure pour chaque oeuvre
     const figureElement = document.createElement("figure");
+    figureElement.setAttribute("data-category-id", works[i].categoryId);
 
     const imageElement = document.createElement("img");
     imageElement.src = works[i].imageUrl;
@@ -62,12 +61,14 @@ createGallery();
 
 //Boutons filtres
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   const galleryContainer = document.querySelector("#portfolio .gallery");
   const allBtn = document.querySelector(".btn-tous");
   const objetsBtn = document.querySelector(".btn-objets");
   const appartementsBtn = document.querySelector(".btn-appartements");
   const hotelsrestaurantsBtn = document.querySelector(".btn-hotelsrestaurants");
+
+  const categories = await getCategories();
 
   function loadGallery() {
     galleryContainer.innerHTML = "";
@@ -115,5 +116,5 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  loadGallery();
+  load;
 });
