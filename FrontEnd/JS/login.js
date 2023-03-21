@@ -1,41 +1,50 @@
-const form = document.querySelector("form");
-const error = document.querySelector("#msgError");
+// Athentification
+async function connexion() {
+  const formulaireLogIn = document.querySelector("#loginForm");
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const getForm = new FormData(form);
-  const objForm = Object.fromEntries(getForm);
-  setForm(objForm);
-});
+  formulaireLogIn.addEventListener("submit", async function (event) {
+    event.preventDefault();
 
-const setForm = async (form) => {
-  try {
-    const requete = await fetch("http://localhost:5678/api/users/login", {
+    let users = {
+      email: document.querySelector("#email").value,
+      password: document.querySelector("#password").value,
+    };
+
+    console.log(users);
+    //  Envoie à l'API
+    const response = await fetch(`http://localhost:5678/api/users/login`, {
       method: "POST",
-      body: JSON.stringify(form),
       headers: {
         "Content-Type": "application/json",
       },
+
+      body: JSON.stringify(users),
     });
 
-    if (requete.ok) {
-      error.style.display = "none";
-      getToken(requete);
-      location.href = "./index.html";
-    } else {
-      error.classList.add("error");
-      error.textContent = "Erreur dans l’identifiant ou le mot de passe";
-    }
-  } catch (e) {
-    console.log(e);
-  }
-};
+    if (response.ok === true) {
+      // Récupération de la réponse
+      console.log(response);
+      const result = await response.json();
+      console.log(result);
 
-const getToken = async (response) => {
-  try {
-    const body = await response.json();
-    localStorage.setItem("token", JSON.stringify(body));
-  } catch (e) {
-    console.log(e);
-  }
-};
+      // On stocke le token
+      sessionStorage.setItem("token", result.token);
+      const token = sessionStorage.getItem("token");
+      window.location.href = "../index.html";
+    } else if (response.status === 404) {
+      let myErrorEmail = document.querySelector("#errorEmail");
+      myErrorEmail.style.display = "block";
+      myErrorEmail.innerHTML = "L'email est incorrect !";
+      myErrorEmail.style.color = "red";
+    } else if (response.status === 401) {
+      let myErrorPassword = document.querySelector("#errorPassword");
+      myErrorPassword.style.display = "block";
+      myErrorPassword.innerHTML = "Le mot de passe est incorrect !";
+      myErrorPassword.style.color = "red";
+    }
+
+    throw new Error("Impossible d'accéder au serveur !");
+  });
+}
+
+connexion();
