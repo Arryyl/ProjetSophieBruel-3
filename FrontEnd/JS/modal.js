@@ -106,7 +106,7 @@ function changeIndexHtml() {
     `<button type="submit" id="publierChangements">publier les changements</button>`;
 
   // //  Récupération id login pour faire le retour index
-  let logout = document.querySelector("#login");
+  let logout = document.querySelector(".login");
   logout.innerHTML = "logout";
   logout.setAttribute("href", "index.html");
   logout.addEventListener("click", logoutIndex);
@@ -147,7 +147,7 @@ function creationBoutonModifier() {
   divH2.setAttribute("id", "bloc-h2");
 
   // Récupération des filtres pour display none en mode édition
-  const filters = document.querySelector("#filters");
+  const filters = document.querySelector(".filtres");
   filters.style.display = "none";
 
   // Ajout du h2 à la div (divH2)
@@ -343,7 +343,7 @@ function closeModal(e) {
   document.querySelector("#formAddTravaux").reset();
 
   // Remove ajout de l'image si on ferme modal
-  document.getElementById("figureImageFile").remove();
+  document.getElementById("#figureImageFile").remove();
 
   // Display none la div de confirmation trravail ajouté si on quitte la modal
   document.querySelector("#confirmAddWorks").style.display = "none";
