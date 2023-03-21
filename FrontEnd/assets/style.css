@@ -360,6 +360,404 @@ footer nav ul {
 }
 
 /* */
+
+/* Ajout modale */
+
+#headerEdition {
+  display: flex;
+  flex-direction: column;
+}
+
+#bloc-mode-editeur {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 59px;
+  background: black;
+  margin-bottom: 38px;
+  z-index: 1;
+  margin-top: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+#bloc-mode-editeur p {
+  padding: 0 21px 0 13px;
+  background: black;
+  color: white;
+}
+
+#bloc-mode-editeur button {
+  border-radius: 60px;
+  background: white;
+}
+
+#bloc-mode-editeur i {
+  background: black;
+  color: white;
+}
+
+#bloc-mode-editeur button {
+  height: 38px;
+  font-size: 14px;
+  border: none;
+  padding: 11px 23px;
+}
+
+#bloc-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+a:hover {
+  color: #b1663c;
+}
+
+/* SECTION INTRO MODIFIER */
+
+#figureIntro {
+  display: flex;
+  flex-direction: column;
+}
+
+#figureIntro a {
+  padding-left: 57px;
+  margin-top: 15px;
+}
+
+/* BOUTON MODIFIER H2 */
+
+#bloc-h2 h2 {
+  margin-bottom: 0;
+  padding-right: 31px;
+}
+
+#bloc-h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 68px;
+}
+
+/* BOUTON figureIntro, block-picturesh2 */
+#figureIntro a i,
+#bloc-h2 a i {
+  padding-right: 11px;
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+}
+.modal-wrapperTravaux img {
+  width: 100%;
+  height: 104px;
+  object-fit: cover;
+}
+
+.modal-wrapperTravaux {
+  background-color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  background-color: white;
+  grid-column-gap: 10px;
+  grid-row-gap: 12px;
+  padding-bottom: 47px;
+  border-bottom: 1px solid #b3b3b3;
+  margin-bottom: 38px;
+  background-color: #fffef8;
+}
+
+.modal-wrapper,
+.modal-wrapper-add-pictures {
+  padding: 60px 105px 48px 105px;
+  width: 420px;
+  height: 622px;
+  position: relative;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+#formAddTravaux {
+  border-radius: 10px;
+}
+
+.modal-wrapper-add-pictures {
+  height: 562px;
+}
+
+.modal-wrapper h2,
+.modal-wrapper-add-pictures h2 {
+  text-align: center;
+  margin-bottom: 46px;
+  color: black;
+  font-family: "Work Sans";
+}
+
+.modal-wrapper input[type="submit"] {
+  border: none;
+  height: 36px;
+  width: 237px;
+  margin: auto;
+  margin-bottom: 23px;
+}
+
+.modal-wrapper button[id="supprimerGalerie"] {
+  background-color: white;
+  border: none;
+  color: red;
+  width: max-content;
+  margin: auto;
+}
+
+.figureModal {
+  position: relative;
+}
+
+.btnPoubelle {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  border: none;
+  padding: 4px;
+  border-radius: 2px;
+  font-size: 9px;
+  background: black;
+  color: white;
+  border-radius: 2px;
+  opacity: 0;
+}
+
+.iconFlecheEdit {
+  position: absolute;
+  top: 6px;
+  right: 26px;
+  border: none;
+  padding: 4px;
+  border-radius: 2px;
+  display: none;
+  font-size: 9px;
+  background: black;
+  color: white;
+  border-radius: 2px;
+  opacity: 0;
+}
+.figureModal:hover .iconFlecheEdit,
+.figureModal:hover .iconPoubelle {
+  opacity: 1;
+}
+
+.js-btn-close,
+.js-btn-close-pictures {
+  position: absolute;
+  right: 36px;
+  top: 32px;
+  font-size: 20px;
+  border: none;
+  background-color: #fffef8;
+  padding: 0;
+}
+
+/* CSS div ajout travaux */
+
+.arrow-left {
+  position: absolute;
+  left: 36px;
+  top: 32px;
+  font-size: 20px;
+  border: none;
+  background-color: #fffef8;
+  padding: 0;
+}
+
+#bloc-add-pictures {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #e8f1f7;
+  width: 420px;
+  height: 169px;
+  margin-bottom: 30px;
+}
+
+#bloc-add-pictures p {
+  background-color: #e8f1f7;
+  font-size: 10px;
+  margin-bottom: 19px;
+}
+
+.pictures-mountain {
+  font-size: 58px;
+  background-color: #e8f1f7;
+  margin-top: 15px;
+}
+
+.modal-wrapper-add-pictures label {
+  font-weight: 500;
+  color: #3d3d3d;
+  margin-bottom: 10px;
+}
+
+.modal-wrapper-add-pictures input[name="titre"] {
+  margin-bottom: 21px;
+}
+
+.modal-wrapper-add-pictures input[type="text"] {
+  height: 51px;
+  padding: 0;
+  border: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+.modal-wrapper-add-pictures select[name="categorie"] {
+  height: 51px;
+  border: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.09);
+  appearance: none;
+  padding-right: 40px;
+}
+
+#input-pictures {
+  display: flex;
+  flex-direction: column;
+
+  border-bottom: 1px solid #b3b3b3;
+  padding-bottom: 47px;
+  margin-bottom: 32px;
+}
+
+.modal-wrapper-add-pictures input[value="Valider"] {
+  border: none;
+  height: 36px;
+  width: 237px;
+  background: #a7a7a7;
+  display: flex;
+  margin: 0;
+  justify-content: center;
+  align-self: center;
+}
+
+.custom-select {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.chevron-down {
+  display: block;
+  position: absolute;
+  top: 42px;
+  right: 20px;
+  pointer-events: none;
+  color: #6c6c6c;
+}
+
+label[for="file"] {
+  border: none;
+  background-color: #cbd6dc;
+  color: #306685;
+  height: 36px;
+  width: 173px;
+  font-size: 14px;
+  font-family: "Work Sans";
+  margin-top: 21px;
+  margin-bottom: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+}
+
+input[type="file"] {
+  opacity: 0;
+  height: 36px;
+  width: 173px;
+  border-radius: 50px;
+  position: absolute;
+  bottom: 43px;
+}
+
+#imgFileInput {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image_delete_button {
+  background: black;
+  color: white;
+  border-radius: 2px;
+  border: none;
+  font-size: 9px;
+  padding: 4px;
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  opacity: 0;
+}
+
+#figureImageFile {
+  width: 175px;
+  height: 100%;
+  position: absolute;
+}
+
+#figureImageFile:hover .image_delete_button {
+  opacity: 1;
+}
+
+.messageErreur {
+  color: red;
+  position: absolute;
+  bottom: 20px;
+  left: 22%;
+}
+
+#confirmAddWorks {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Syne";
+  z-index: 1;
+  top: 35%;
+  left: 25%;
+  width: 50%;
+  height: 100px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+}
+
+#btnConfirmAddWorks {
+  position: absolute;
+  background-color: #1d6154;
+  color: white;
+  border: none;
+  bottom: 10px;
+  border-radius: 10px;
+  padding: 7px;
+  width: 50px;
+}
+
+#confirmAddWorks p {
+  margin-top: 25px;
+}
+
+/* */
 #contact {
   width: 50%;
   margin: auto;
