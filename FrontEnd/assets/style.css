@@ -376,11 +376,6 @@ footer nav ul {
   background: black;
   margin-bottom: 38px;
   z-index: 1;
-  margin-top: 0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
 }
 
 #bloc-mode-editeur p {
@@ -456,8 +451,21 @@ a:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.479);
 }
+.modal-wrapper,
+.modal-wrapper-add-pictures {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  margin: auto;
+  padding: 60px 105px 48px 105px;
+  width: 420px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
 .modal-wrapperTravaux img {
   width: 100%;
   height: 104px;
@@ -475,18 +483,6 @@ a:hover {
   border-bottom: 1px solid #b3b3b3;
   margin-bottom: 38px;
   background-color: #fffef8;
-}
-
-.modal-wrapper,
-.modal-wrapper-add-pictures {
-  padding: 60px 105px 48px 105px;
-  width: 420px;
-  height: 622px;
-  position: relative;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
 }
 
 #formAddTravaux {
@@ -798,6 +794,12 @@ input[type="submit"] {
   width: 180px;
   text-align: center;
   border-radius: 60px;
+  cursor: pointer;
+}
+input[type="submit"]:hover {
+  background-color: white;
+  color: #1d6154;
+  border: 2px solid #1d6154;
 }
 
 footer nav ul {

@@ -77,7 +77,7 @@ function changeIndexHtml() {
   headerIndex.style.margin = "0";
 
   // Création d'une div pour la bannière en mode editeur
-  const banniereDiv = document.createElement("header");
+  const banniereDiv = document.createElement("div");
   banniereDiv.setAttribute("id", "bloc-mode-editeur");
 
   // Récupération du titre et du menu de nav
@@ -219,30 +219,7 @@ async function genererElementsModal(travauxModal) {
   }
 }
 
-// let boutonPoubelle = document.querySelectorAll('.btnPoubelle')
-// console.log(boutonPoubelle)
-// for (let i = 0; i < boutonPoubelle.length; i++) {
-//     boutonPoubelle[i].addEventListener("click", async function(e) {
-//         e.preventDefault()
-//         console.log(e)
-//         let id = e.target.id
-
-//         const response = await fetch(`http://localhost:5678/api/works/${id}`, {
-//             method: 'DELETE',
-//             headers: {
-//                 'Authorization': `Bearer ${token}`,
-//                 'Accept': 'application/json',
-//             }
-//         })
-//         if (response)
-
-//     })
-// }
-
-// document.querySelectorAll('.btnPoubelle').forEach(button => {
-//     button.addEventListener('click', deleted)
-// });
-
+//Bouton poubelle
 async function deleted(event) {
   event.preventDefault();
 
