@@ -7,7 +7,7 @@ async function getCategories() {
 }
 
 // Récupération des oeuvres
-async function getWorks() {
+export async function getWorks() {
   return await (await fetch(worksEndpoint)).json();
 }
 
