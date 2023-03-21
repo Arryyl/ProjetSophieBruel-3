@@ -77,7 +77,7 @@ function changeIndexHtml() {
   headerIndex.style.margin = "0";
 
   // Création d'une div pour la bannière en mode editeur
-  const banniereDiv = document.createElement("div");
+  const banniereDiv = document.createElement("header");
   banniereDiv.setAttribute("id", "bloc-mode-editeur");
 
   // Récupération du titre et du menu de nav
