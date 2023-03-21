@@ -3,32 +3,12 @@ const worksEndpoint = "http://localhost:5678/api/works";
 
 // Récupération des catégories
 async function getCategories() {
-  try {
-    const result = await fetch(categoriesEndpoint);
-    if (result.ok) {
-      const data = await result.json();
-      return data;
-    } else {
-      console.log("Error !");
-    }
-  } catch (error) {
-    console.log(error);
-  }
+  return await (await fetch(categoriesEndpoint)).json();
 }
 
 // Récupération des oeuvres
 async function getWorks() {
-  try {
-    const result = await fetch(worksEndpoint);
-    if (result.ok) {
-      const data = await result.json();
-      return data;
-    } else {
-      console.log("Error !");
-    }
-  } catch (error) {
-    console.log(error);
-  }
+  return await (await fetch(worksEndpoint)).json();
 }
 
 // Création des balises HTML pour chaque oeuvre
@@ -67,8 +47,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   const objetsBtn = document.querySelector(".btn-objets");
   const appartementsBtn = document.querySelector(".btn-appartements");
   const hotelsrestaurantsBtn = document.querySelector(".btn-hotelsrestaurants");
-
-  const categories = await getCategories();
 
   function loadGallery() {
     galleryContainer.innerHTML = "";
@@ -116,5 +94,5 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
   }
 
-  load;
+  loadGallery;
 });

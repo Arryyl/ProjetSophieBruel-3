@@ -1,4 +1,4 @@
-import { getWorks } from "./index";
+import { getWorks } from "./index.js";
 
 let travauxModal = [];
 

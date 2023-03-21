@@ -50,6 +50,84 @@
           </p>
         </article>
       </section>
+
+   <!-- TEST  MODAL-->
+      <aside id="modal1" class="modal" aria-hidden="true" role="dialog" style="display: none;">
+        <div class="modal-wrapper js-modal-stop" style="display: null;">
+  
+          <button i class="fa-solid fa-xmark js-btn-close"></i></button>
+  
+          <h2>Galerie photo</h2>
+  
+          <div class="modal-wrapperTravaux">
+  
+          </div>
+  
+          <input type="submit" value="Ajouter une photo">
+          <button id="supprimerGalerie">Supprimer la galerie</button>
+  
+        </div>
+  
+        <form action="" method="post" id="formAddTravaux">
+          
+          <div class="modal-wrapper-add-pictures js-modal-stop-pictures" style="display: none;">
+  
+            <div id="confirmAddWorks" style="display: none;">
+              <p>Votre travail a été ajoutée avec succès !</p>
+              <button id="btnConfirmAddWorks">Ok</button>
+            </div>
+            <button i class="fa fa-arrow-left arrow-left"></i></button>
+  
+            <button i class="fa-solid fa-xmark js-btn-close-pictures"></i></button>
+  
+  
+            <h2>Ajout photo</h2>
+  
+  
+            <div id="bloc-add-pictures">
+              <img src="assets/icons/pic.png" alt="iconMoountain" class="pictures-mountain">
+  
+  
+              <label for="file">+ Ajouter photo
+                <!-- <input type="file" id="addPictures" required> -->
+              </label>
+              <input type="file" id="addPictures">
+  
+              <p>jpg, png : 4mo max</p>
+  
+            </div>
+  
+            <div id="input-pictures">
+              <label for="titre">Titre</label>
+              <input type="text" name="titre" id="titrePictures" required>
+  
+  
+              <div class="custom-select">
+                <label for="categorie">Catégorie</label>
+                <select name="categorie" id="categoriePictures">
+  
+  
+                </select>
+                <span i class="fa-solid fa-chevron-down chevron-down"></i></span>
+              </div>
+  
+  
+            </div>
+  
+            <input type="submit" value="Valider" id="btnValider">
+  
+            <span class="messageErreur" style="display: none;"></span>
+  
+          </div>
+        </form>
+  
+      </aside>
+<!-- TEST  MODAL-->
+
+
+
+
+
       <section id="portfolio">
         <h2>Mes Projets</h2>
 
