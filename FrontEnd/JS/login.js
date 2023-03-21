@@ -30,7 +30,7 @@ async function connexion() {
       // On stocke le token
       sessionStorage.setItem("token", result.token);
       const token = sessionStorage.getItem("token");
-      window.location.href = "../index.html";
+      window.location.href = "index.html";
     } else if (response.status === 404) {
       let myErrorEmail = document.querySelector("#errorEmail");
       myErrorEmail.style.display = "block";
