@@ -1,10 +1,4 @@
-const categoriesEndpoint = "http://localhost:5678/api/categories";
 const worksEndpoint = "http://localhost:5678/api/works";
-
-// Récupération des catégories
-async function getCategories() {
-  return await (await fetch(categoriesEndpoint)).json();
-}
 
 // Récupération des oeuvres
 export async function getWorks() {
