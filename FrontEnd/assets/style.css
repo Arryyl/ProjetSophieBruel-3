@@ -373,9 +373,12 @@ footer nav ul {
   justify-content: center;
   align-items: center;
   height: 59px;
-  background: black;
-  margin-bottom: 38px;
-  z-index: 1;
+  background-color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
 }
 
 #bloc-mode-editeur p {
@@ -404,6 +407,9 @@ footer nav ul {
 #bloc-header {
   display: flex;
   justify-content: space-between;
+  position: relative;
+  z-index: 1;
+  margin-top: 7em;
 }
 
 a:hover {
@@ -453,6 +459,7 @@ a:hover {
   height: 100%;
   background: rgba(0, 0, 0, 0.479);
 }
+
 .modal-wrapper,
 .modal-wrapper-add-pictures {
   background-color: #fff;
