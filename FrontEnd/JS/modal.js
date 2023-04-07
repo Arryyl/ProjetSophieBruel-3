@@ -120,7 +120,6 @@ function changeIndexHtml() {
 }
 changeIndexHtml();
 
-//   let btnModifier;
 // BOUTON MODIFIER
 function creationBoutonModifier() {
   // BOUTON MODIFIER INTRODUCTION
@@ -240,24 +239,13 @@ async function deleted(event) {
     document.querySelector(".gallery").innerHTML = "";
 
     getWorks();
-    // genererElements()
-
-    // document.querySelector('.modal-wrapper').innerHTML = "";
-    // genererElementsModal()
-    // document.querySelector('.gallery').innerHTML = "";
-    // getWorks()
-    // genererElements()
   } else {
     throw new Error("Impossible");
-    // document.querySelector('.gallery').innerHTML = "";
-    // getWorks(travaux)
   }
 }
 
 // ********** Fonction ouvrir/fermer modal **********
 
-// function openCloseModale() {
-//   let modal = target (la modale)
 let modal = null;
 
 //   Fonction pour ouvrir la modale
@@ -269,11 +257,6 @@ const openModal = function (e) {
   // On retire le display: "none"
   target.style.display = null;
 
-  /* On remove l'attribut aria-hidden qui est sur "true" en html
-        et on ajoute un attribut aria-modal "true" :
-        DOC arial-modal :
-        https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-modal
-        */
   target.removeAttribute("aria-hidden");
   target.setAttribute("aria-modal", "true");
 
@@ -598,35 +581,3 @@ userImage.addEventListener("input", function (e) {
   console.log(fileList);
   console.log(fileList[0]);
 });
-
-// let idWork;
-// let ids = [];
-// function supprMedia() {
-//     const poubelles = document.querySelectorAll('.btnPoubelle')
-//     for (let poubelle of poubelles) {
-//         poubelle.addEventListener("click", (e) => {
-//             e.preventDefault()
-//             idWork = e.target.parentNode.childNodes[0].currentSrc;
-//             ids.push(e.target.parentElement.dataset.id);
-
-//             openCloseModale(e)
-//             console.log("ccc")
-//         })
-//     }
-// }
-
-// supprMedia()
-
-// const publierChangement = document.querySelector('#publierChangements')
-// publierChangement.addEventListener('click', () => {
-//     for (let i of ids) {
-//         fetch(`http://localhost:5678/api/works/${ids[i]}`, {
-//             method: 'DELETE',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//                 Authorization: `Bearer ${token}`
-//             }
-//         })
-//     }
-
-// })
