@@ -190,7 +190,7 @@ async function genererElementsModal(travauxModal) {
     // btnIconPoubelle.setAttribute("id", travauxModal[i].id)
 
     btnIconPoubelle.id = travauxModal[i].id;
-    // console.log(btnIconPoubelle)
+    btnIconPoubelle.style.display = "block";
     cardElement.append(btnIconPoubelle);
 
     let btnIconFlecheEdit = document.createElement("button");

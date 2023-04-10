@@ -539,7 +539,7 @@ a:hover {
   background: black;
   color: white;
   border-radius: 2px;
-  opacity: 0;
+  opacity: 1;
 }
 
 .iconFlecheEdit {
