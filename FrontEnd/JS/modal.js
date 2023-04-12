@@ -248,7 +248,7 @@ async function deleted(event) {
 
 let modal = null;
 
-//   Fonction pour ouvrir la modale
+// Fonction pour ouvrir la modale
 const openModal = function (e) {
   e.preventDefault();
   // On stock la modale dans la const target
@@ -274,42 +274,55 @@ const openModal = function (e) {
     .addEventListener("click", stopPropagation);
 };
 
-// Fonction pour close modal
+// Fonction pour fermer la modale
 function closeModal(e) {
   if (modal === null) return;
   e.preventDefault();
-  // On remet le display sur "none", car on veux la faire disparaitre
+
+  // On remet le display sur "none", car on veut la faire disparaître
   modal.style.display = "none";
 
   // On remet l'attribut aria-hidden sur "true"
   modal.setAttribute("aria-hidden", "true");
-  // On remet remove l'attribut aria-modal pour le remettre sur "false"
+
+  // On retire l'attribut aria-modal pour le remettre sur "false"
   modal.removeAttribute("aria-modal");
 
-  // On remove l'event closeModal
+  // On retire l'event closeModal
   modal.removeEventListener("click", closeModal);
   modal.querySelector(".js-btn-close").removeEventListener("click", closeModal);
   modal
     .querySelector(".js-modal-stop")
     .removeEventListener("click", stopPropagation);
 
-  // Quand on ferme la modal, display null "galerie photo" et display none "ajouter photo"
+  // Quand on ferme la modale, on remet le display à null pour "galerie photo" et à "none" pour "ajouter photo"
   modal.querySelector(".modal-wrapper").style.display = null;
   modal.querySelector(".modal-wrapper-add-pictures").style.display = "none";
 
   modal = null;
 
-  // reset le formulaire si on ferme la modal
+  // On reset le formulaire si on ferme la modale
   document.querySelector("#formAddTravaux").reset();
 
-  // Remove ajout de l'image si on ferme modal
-  document.getElementById("#figureImageFile").remove();
+  // On retire l'ajout de l'image si on ferme la modale
+  const figureImageFile = document.getElementById("figureImageFile");
+  if (figureImageFile) {
+    figureImageFile.remove();
+  }
 
-  // Display none la div de confirmation trravail ajouté si on quitte la modal
-  document.querySelector("#confirmAddWorks").style.display = "none";
+  // On remet le display à "none" pour la div de confirmation "travail ajouté" si on quitte la modale
+  const confirmAddWorks = document.querySelector("#confirmAddWorks");
+  if (confirmAddWorks) {
+    confirmAddWorks.style.display = "none";
+  }
 
-  document.querySelector(".messageErreur").style.display = "none";
+  const messageErreur = document.querySelector(".messageErreur");
+  if (messageErreur) {
+    messageErreur.style.display = "none";
+  }
 }
+
+// ********** ///
 
 // Récupération de la div pour ajouter les travaux
 const addPictures = document.querySelector(
@@ -346,8 +359,11 @@ function retour(e) {
   // On reset le formulaire d'ajout de travaux quand on fait un retour
   document.querySelector("#formAddTravaux").reset();
 
-  // On remove l'image de prévisualisation si retour
-  document.getElementById("figureImageFile").remove();
+  // On remove l'image de prévisualisation si elle existe
+  const figureImageFile = document.getElementById("figureImageFile");
+  if (figureImageFile) {
+    figureImageFile.remove();
+  }
 
   // On display none la div de confirmation de travaux ajouté si on fait un retour
   document.querySelector("#confirmAddWorks").style.display = "none";
@@ -395,29 +411,40 @@ const confirmAddWorks = document.querySelector("#confirmAddWorks");
 // Récupération de la balise pour mettre un message d'erreur
 let myErrorForm = document.querySelector(".messageErreur");
 
-// Fonction pour ajouter les travaux
 function ajoutTravaux() {
-  // On récupère le formulaire d'ajout des travaux
   const formAjoutTravaux = document.querySelector("#formAddTravaux");
-  console.log(formAjoutTravaux);
+  const btnValider = document.querySelector("#btnValider");
+
+  // Ajout d'un événement input aux champs titre et image
+  const titreInput = document.querySelector("#titrePictures");
+  titreInput.addEventListener("input", function () {
+    checkInputsValidity();
+  });
+  const imageInput = document.querySelector("#addPictures");
+  imageInput.addEventListener("input", function () {
+    checkInputsValidity();
+  });
+
+  // Fonction pour vérifier la validité des champs
+  function checkInputsValidity() {
+    let titreValide = titreInput.value.trim() !== "";
+    let imageValide = imageInput.files.length > 0;
+    btnValider.disabled = !(titreValide && imageValide);
+  }
 
   // On ajoute un Listener submit
   formAjoutTravaux.addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    // On récupère les valeurs des inputs
     let title = document.querySelector("#titrePictures").value;
     let image = document.querySelector("#addPictures").files[0];
     let category = document.querySelector("#categoriePictures").value;
-
-    console.log(category);
 
     const formData = new FormData();
     formData.append("title", title);
     formData.append("image", image);
     formData.append("category", category);
 
-    // Requête API
     const response = await fetch(`http://localhost:5678/api/works/`, {
       method: "POST",
       headers: {
@@ -429,10 +456,7 @@ function ajoutTravaux() {
     });
 
     if (response.ok) {
-      // Si reponse = true on reset le formulaire
       document.querySelector("#formAddTravaux").reset();
-
-      // On remove le listener qui permet de fermer la modal
       modal.removeEventListener("click", closeModal);
       modal
         .querySelector(".js-btn-close-pictures")
@@ -440,35 +464,34 @@ function ajoutTravaux() {
       modal
         .querySelector(".js-modal-stop-pictures")
         .removeEventListener("click", stopPropagation);
-
-      // On fait apparaître notre message de confirmation
       confirmAddWorks.style.display = null;
-
-      // On refresh la page
       document.querySelector(".modal-wrapperTravaux").innerHTML = "";
-      // Appel de la fonction pour afficher les travaux ajouter
       getWorksModal();
-      // genererElementsModal()
       document.querySelector(".gallery").innerHTML = "";
       getWorks();
-
-      // genererElements()
-
-      /* Si il y a eu un message d'erreur et que tous les champ
-            on bien était rempli on enlève le message d'erreur*/
       myErrorForm = document.querySelector(".messageErreur");
       myErrorForm.style.display = "none";
+      btnValider.disabled = true;
     } else {
-      // On récupère notre balise pour le message d'erreur
       myErrorForm = document.querySelector(".messageErreur");
       myErrorForm.style.display = "block";
       myErrorForm.innerText =
         "Erreur dans le formulaire, veuillez ajouter une image";
-
       throw new Error(`Une erreur est survenue`);
     }
   });
+
+  // Ajout d'un Listener pour désactiver le bouton si le formulaire est fermé sans être validé
+  document
+    .querySelector(".js-btn-close-pictures")
+    .addEventListener("click", function () {
+      btnValider.disabled = true;
+    });
+
+  // Appel de la fonction pour vérifier la validité des champs au chargement de la page
+  checkInputsValidity();
 }
+
 ajoutTravaux();
 
 // On récupère notre btn de confirmation

@@ -11,6 +11,7 @@ async function connexion() {
     };
 
     console.log(users);
+
     //  Envoie à l'API
     const response = await fetch(`http://localhost:5678/api/users/login`, {
       method: "POST",
@@ -43,7 +44,16 @@ async function connexion() {
       myErrorPassword.style.color = "red";
     }
 
-    throw new Error("Impossible d'accéder au serveur !");
+    // Supprime les messages d'erreur après 3 secondes
+    setTimeout(() => {
+      let myErrorEmail = document.querySelector("#errorEmail");
+      myErrorEmail.style.display = "none";
+      myErrorEmail.innerHTML = "";
+
+      let myErrorPassword = document.querySelector("#errorPassword");
+      myErrorPassword.style.display = "none";
+      myErrorPassword.innerHTML = "";
+    }, 3000);
   });
 }
 
