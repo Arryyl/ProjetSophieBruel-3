@@ -17,7 +17,7 @@ async function getWorksModal() {
   if (reponse.ok === true && token) {
     // Réponse de l'API
     travauxModal = await reponse.json();
-    console.log(travauxModal);
+    //console.log(travauxModal);
 
     genererElementsModal(travauxModal);
   } else {
@@ -41,7 +41,7 @@ async function getCategoryOptionModal() {
   if (reponse.ok === true && token) {
     // Réponse de l'API (catégories) au format JSON
     categoriesOptionModal = await reponse.json();
-    console.log(categoriesOptionModal);
+    //console.log(categoriesOptionModal);
 
     genererOption();
   } else {
@@ -56,7 +56,7 @@ const selectGroupe = document.querySelector("#categoriePictures");
 
 async function genererOption() {
   for (let categorieId of categoriesOptionModal) {
-    console.log(categorieId.id);
+    //console.log(categorieId.id);
 
     // Création des balise <option>
     let option = document.createElement("option");
