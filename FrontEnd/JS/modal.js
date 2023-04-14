@@ -2,7 +2,7 @@ import { getWorks } from "./index.js";
 
 let travauxModal = [];
 
-let token = sessionStorage.getItem("token");
+let token = localStorage.getItem("token"); //modif ici
 
 async function getWorksModal() {
   // Appel de l'API pour récupérer les travaux modal
@@ -114,7 +114,7 @@ function changeIndexHtml() {
   // Fonction pour retrouner sur la page index
   function logoutIndex(e) {
     e.preventDefault();
-    sessionStorage.removeItem("token");
+    localStorage.removeItem("token"); //modif ici
     window.location.href = "index.html";
   }
 }

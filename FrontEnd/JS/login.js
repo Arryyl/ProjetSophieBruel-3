@@ -29,8 +29,8 @@ async function connexion() {
       //console.log(result);
 
       // On stocke le token
-      sessionStorage.setItem("token", result.token);
-      const token = sessionStorage.getItem("token");
+      localStorage.setItem("token", result.token); // Modification ici
+      const token = localStorage.getItem("token"); // Modification ici
       window.location.href = "index.html";
     } else if (response.status === 404) {
       let myErrorEmail = document.querySelector("#errorEmail");
