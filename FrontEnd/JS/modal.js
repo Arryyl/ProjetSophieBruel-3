@@ -408,44 +408,39 @@ title.addEventListener("invalid", function (event) {
 // Récupération de la div pour afficher le message si l'envoie des travaux a réussi
 
 const confirmAddWorks = document.querySelector("#confirmAddWorks");
-// Récupération de la balise pour mettre un message d'erreur
-let myErrorForm = document.querySelector(".messageErreur");
 
 function ajoutTravaux() {
   const formAjoutTravaux = document.querySelector("#formAddTravaux");
   const btnValider = document.querySelector("#btnValider");
-
-  // Ajout d'un événement input aux champs titre et image
   const titreInput = document.querySelector("#titrePictures");
-  titreInput.addEventListener("input", function () {
-    checkInputsValidity();
-  });
   const imageInput = document.querySelector("#addPictures");
-  imageInput.addEventListener("input", function () {
-    checkInputsValidity();
-  });
+  const messageErreur = document.querySelector(".messageErreur");
 
-  // Ajout d'un événement change pour détecter la suppression de la photo
-  imageInput.addEventListener("change", function () {
-    if (!imageInput.files || !imageInput.files[0]) {
-      // La photo a été supprimée
-      checkInputsValidity();
-    }
-  });
+  // Vérifie si le champ de la photo est rempli à chaque seconde
+  setInterval(function () {
+    checkInputsValidity();
+  }, 10);
 
   // Fonction pour vérifier la validité des champs
   function checkInputsValidity() {
-    let titreValide = titreInput.value.trim() !== "";
     let imageValide = imageInput.files && imageInput.files.length > 0;
-    btnValider.disabled = !(titreValide && imageValide);
+
+    // Désactiver le bouton si l'image n'est pas ajoutée
+    if (!imageValide) {
+      btnValider.disabled = true;
+      btnValider.classList.remove("btn-valider-rempli");
+    } else {
+      btnValider.disabled = false;
+      btnValider.classList.add("btn-valider-rempli");
+    }
   }
 
   // On ajoute un Listener submit
   formAjoutTravaux.addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    let title = document.querySelector("#titrePictures").value;
-    let image = document.querySelector("#addPictures").files[0];
+    let title = titreInput.value;
+    let image = imageInput.files[0];
     let category = document.querySelector("#categoriePictures").value;
 
     const formData = new FormData();
@@ -453,13 +448,22 @@ function ajoutTravaux() {
     formData.append("image", image);
     formData.append("category", category);
 
+    if (!image) {
+      messageErreur.innerText = "Veuillez ajouter une photo";
+      return;
+    }
+
+    if (!title.trim()) {
+      messageErreur.innerText = "Le titre doit être rempli";
+      return;
+    }
+
     const response = await fetch(`http://localhost:5678/api/works/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
         Authorization: `Bearer ${token}`,
       },
-
       body: formData,
     });
 
@@ -477,24 +481,12 @@ function ajoutTravaux() {
       getWorksModal();
       document.querySelector(".gallery").innerHTML = "";
       getWorks();
-      myErrorForm = document.querySelector(".messageErreur");
-      myErrorForm.style.display = "none";
+      messageErreur.innerText = "";
       btnValider.disabled = true;
     } else {
-      myErrorForm = document.querySelector(".messageErreur");
-      myErrorForm.style.display = "block";
-      myErrorForm.innerText =
-        "Erreur dans le formulaire, veuillez ajouter une image";
       throw new Error(`Une erreur est survenue`);
     }
   });
-
-  // Ajout d'un Listener pour désactiver le bouton si le formulaire est fermé sans être validé
-  document
-    .querySelector(".js-btn-close-pictures")
-    .addEventListener("click", function () {
-      btnValider.disabled = true;
-    });
 
   // Appel de la fonction pour vérifier la validité des champs au chargement de la page
   checkInputsValidity();

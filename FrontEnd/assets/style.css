@@ -725,8 +725,9 @@ input[type="file"] {
 .messageErreur {
   color: red;
   position: absolute;
+  justify-content: center;
+  align-self: center;
   bottom: 20px;
-  left: 22%;
 }
 
 #confirmAddWorks {
