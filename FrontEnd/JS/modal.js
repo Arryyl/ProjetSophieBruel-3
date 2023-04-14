@@ -416,13 +416,9 @@ function ajoutTravaux() {
   const imageInput = document.querySelector("#addPictures");
   const messageErreur = document.querySelector(".messageErreur");
 
-  // Vérifie si le champ de la photo est rempli à chaque seconde
-  setInterval(function () {
-    checkInputsValidity();
-  }, 10);
-
   // Fonction pour vérifier la validité des champs
   function checkInputsValidity() {
+    let titreValide = titreInput.value.trim() !== "";
     let imageValide = imageInput.files && imageInput.files.length > 0;
 
     // Désactiver le bouton si l'image n'est pas ajoutée
@@ -434,6 +430,11 @@ function ajoutTravaux() {
       btnValider.classList.add("btn-valider-rempli");
     }
   }
+
+  // Vérifie si le champ de la photo est rempli à chaque seconde
+  setInterval(function () {
+    checkInputsValidity();
+  }, 10);
 
   // On ajoute un Listener submit
   formAjoutTravaux.addEventListener("submit", async function (e) {
@@ -447,11 +448,6 @@ function ajoutTravaux() {
     formData.append("title", title);
     formData.append("image", image);
     formData.append("category", category);
-
-    if (!image) {
-      messageErreur.innerText = "Veuillez ajouter une photo";
-      return;
-    }
 
     if (!title.trim()) {
       messageErreur.innerText = "Le titre doit être rempli";
