@@ -10,7 +10,7 @@ async function connexion() {
       password: document.querySelector("#password").value,
     };
 
-    console.log(users);
+    //console.log(users);
 
     //  Envoie à l'API
     const response = await fetch(`http://localhost:5678/api/users/login`, {
@@ -24,9 +24,9 @@ async function connexion() {
 
     if (response.ok === true) {
       // Récupération de la réponse
-      console.log(response);
+      //console.log(response);
       const result = await response.json();
-      console.log(result);
+      //console.log(result);
 
       // On stocke le token
       sessionStorage.setItem("token", result.token);

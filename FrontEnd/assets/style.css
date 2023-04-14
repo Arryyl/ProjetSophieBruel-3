@@ -804,7 +804,7 @@ input[type="submit"] {
   cursor: pointer;
 }
 
-#formAddTravaux input:valid {
+#formAddTravaux input[type="submit"]:valid {
   background-color: #1d6154;
 }
 

@@ -425,10 +425,18 @@ function ajoutTravaux() {
     checkInputsValidity();
   });
 
+  // Ajout d'un événement change pour détecter la suppression de la photo
+  imageInput.addEventListener("change", function () {
+    if (!imageInput.files || !imageInput.files[0]) {
+      // La photo a été supprimée
+      checkInputsValidity();
+    }
+  });
+
   // Fonction pour vérifier la validité des champs
   function checkInputsValidity() {
     let titreValide = titreInput.value.trim() !== "";
-    let imageValide = imageInput.files.length > 0;
+    let imageValide = imageInput.files && imageInput.files.length > 0;
     btnValider.disabled = !(titreValide && imageValide);
   }
 
@@ -601,6 +609,37 @@ userImage.addEventListener("input", function (e) {
   e.preventDefault();
 
   const fileList = userImage.files;
-  console.log(fileList);
-  console.log(fileList[0]);
 });
+
+document
+  .getElementById("supprimerGalerie")
+  .addEventListener("click", deleteGallery);
+
+function deleteGallery() {
+  var galleryId = 1;
+
+  fetch("http://localhost:5678/api/works/1", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ gallery_id: galleryId }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      // Si la galerie a été supprimée avec succès, affichez un message de succès
+      document.getElementById("deleteGalleryModal").style.display = "none";
+      document.getElementById("successMessage").textContent =
+        "La galerie a été supprimée avec succès.";
+      document.getElementById("successModal").style.display = "block";
+    })
+    .catch((error) => {
+      // Si une erreur se produit, affichez un message d'erreur
+      document.getElementById("deleteGalleryModal").style.display = "none";
+      document.getElementById("errorMessage").textContent =
+        "Une erreur s'est produite lors de la suppression de la galerie.";
+      document.getElementById("errorModal").style.display = "block";
+    });
+}
+
+var galleryId = document.getElementById("galleryIdInput").value;
