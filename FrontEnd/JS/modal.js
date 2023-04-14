@@ -610,36 +610,3 @@ userImage.addEventListener("input", function (e) {
 
   const fileList = userImage.files;
 });
-
-document
-  .getElementById("supprimerGalerie")
-  .addEventListener("click", deleteGallery);
-
-function deleteGallery() {
-  var galleryId = 1;
-
-  fetch("http://localhost:5678/api/works/1", {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ gallery_id: galleryId }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      // Si la galerie a été supprimée avec succès, affichez un message de succès
-      document.getElementById("deleteGalleryModal").style.display = "none";
-      document.getElementById("successMessage").textContent =
-        "La galerie a été supprimée avec succès.";
-      document.getElementById("successModal").style.display = "block";
-    })
-    .catch((error) => {
-      // Si une erreur se produit, affichez un message d'erreur
-      document.getElementById("deleteGalleryModal").style.display = "none";
-      document.getElementById("errorMessage").textContent =
-        "Une erreur s'est produite lors de la suppression de la galerie.";
-      document.getElementById("errorModal").style.display = "block";
-    });
-}
-
-var galleryId = document.getElementById("galleryIdInput").value;
